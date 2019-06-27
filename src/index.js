@@ -35,7 +35,9 @@ fetch(imgUrl)
         let filter = e.target.value
         allListItems = breedList.querySelectorAll("li")
         for (const listItem of allListItems) {
-          if (listItem.textContent[0] === filter ) {
+          if (filter === "all") {
+            listItem.style.display = "list-item";
+          }else if (listItem.textContent[0] === filter ) {
             listItem.style.display = "list-item";
             // listItem.style.visibility = "initial";
           }else {
