@@ -45,6 +45,19 @@ function buildImgEl(image){
     return img
 }
 
+const breedUnorderedList = document.querySelector('#dog-breeds')
+breedUnorderedList.addEventListener("click", (e) => {
+    if (e.target.tagName == 'LI'){
+        e.target.style = "color:blue"
+    }
+} )
+
+
+
+
+
+
+
 function main(){
     fetchImg();
     fetchBreed();
