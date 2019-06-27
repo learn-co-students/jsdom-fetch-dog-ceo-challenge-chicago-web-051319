@@ -19,6 +19,18 @@ function renderBreed(breeds){
         const appendBreed = buildBreedEl(breed);
         ul.append(appendBreed);
     })
+    const breedObject = filterBreed(breedsArray)
+    const breedFilterSelector = document.querySelector("#breed-dropdown")
+    breedFilterSelector.addEventListener("change", (e) => {const filteredBreed = breedObject[breedFilterSelector.value];
+        ul.innerHTML = '';
+        filteredBreed.forEach( breed => {
+            const appendFilteredBreed = buildBreedEl(breed); 
+            ul.append(appendFilteredBreed);})
+        })
+
+        
+   //set the breed filter variable
+   //rebuild the list again with the breed filter
 }
 
 function renderImg(images){
@@ -45,6 +57,27 @@ function buildImgEl(image){
     return img
 }
 
+function main(){
+    fetchImg();
+    fetchBreed();
+    
+}
+
+main();
+
+function filterBreed(breedsArray){
+    //iterate through the entire array to create a hash of breeds so for example {a: affenpinsher, african}
+    breedObj = {}
+    breedsArray.forEach(breed => {
+        if (!(breed[0] in breedObj)){
+            breedObj[breed[0]] = [breed]
+        }    
+        else{
+            breedObj[breed[0]].push(breed)
+        }
+    })
+    return breedObj
+}
 const breedUnorderedList = document.querySelector('#dog-breeds')
 breedUnorderedList.addEventListener("click", (e) => {
     if (e.target.tagName == 'LI'){
@@ -53,16 +86,5 @@ breedUnorderedList.addEventListener("click", (e) => {
 } )
 
 
-
-
-
-
-
-function main(){
-    fetchImg();
-    fetchBreed();
-}
-
-main();
 
 
